@@ -1,2 +1,7 @@
 # vagrant-ltp-sandbox
-vagrant linux-test-project
+~~~~
+>vagrant up vg-ubuntu-01
+
+http://linux-test-project.github.io/
+
+~~~~
