@@ -65,7 +65,9 @@ echo "================= list of testcases in the runtest directory==============
 ls  $PREFIX/runtest
 
 # echo "================= run a particular test suite======================================"
-# ./runltp -f syscalls
+# cd $WORKING_DIR/ltp/testcases/kernel/syscalls/fork/
+# PATH=$PATH:$PWD ./fork01
+
 
 # echo "=================  run all the test suites======================================"
 # ./runltp

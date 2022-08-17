@@ -454,7 +454,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "vg-ubuntu-01" do |kalicluster|
       # https://app.vagrantup.com/ubuntu/boxes/jammy64
       # kalicluster.vm.box = "ubuntu/jammy64" #22.04      
-      kalicluster.vm.box = "bento/ubuntu-20.04"
+      kalicluster.vm.box = "bento/ubuntu-20.04" #OK
       kalicluster.vm.hostname = "vg-ubuntu-01"
       kalicluster.vm.network "public_network"
       kalicluster.vm.network "forwarded_port", guest: 22, host: 2214
@@ -469,6 +469,26 @@ Vagrant.configure("2") do |config|
       kalicluster.vm.provision :shell, path: "scripts/ltp.sh"
       kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
     end
+
+        #bridged network, DHCP enabled auto IP assignment
+        config.vm.define "vg-ubuntu-02" do |kalicluster|
+          # https://app.vagrantup.com/ubuntu/boxes/jammy64
+          kalicluster.vm.box = "ubuntu/jammy64" #22.04      
+          # kalicluster.vm.box = "bento/ubuntu-20.04"
+          kalicluster.vm.hostname = "vg-ubuntu-02"
+          kalicluster.vm.network "public_network"
+          kalicluster.vm.network "forwarded_port", guest: 22, host: 2215
+          # kalicluster.vm.network "forwarded_port", guest: 22, host: 2202
+          #Disabling the default /vagrant share can be done as follows:
+          # kalicluster.vm.synced_folder ".", "/vagrant", disabled: true
+          kalicluster.vm.provider "virtualbox" do |vb|
+              vb.name = "vbox-ubuntu-02"
+              vb.memory = "768"
+              vb.gui = false
+          end
+          kalicluster.vm.provision :shell, path: "scripts/ltp.sh"
+          kalicluster.vm.provision :shell, path: "provisioning/bootstrap.sh"
+        end
 
      
     #bridged network,DHCP enabled,auto IP assignment
